@@ -1,0 +1,41 @@
+/* deixando todos os elementos da página com a fonte 'Poppins' */
+*{
+    font-family: "Poppins";
+}
+
+body{
+  background-image: url('assets/img/mbw-background.png');
+  background-size: cover; /* Ajusta a imagem para cobrir todo o fundo */
+  background-repeat: no-repeat; /* Evita que a imagem se repita */
+  background-attachment: fixed; /* Fixa a imagem ao fundo ao rolar a página */
+  background-position: center; /* Centraliza a imagem */
+}
+
+.bg-image {
+  background-image: url('assets/img/mbw-background.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  height: 100vh; /* Define altura total da tela para a div */
+}
+
+/* importando a fonte 'Poppins' */
+.poppins-regular {
+  font-family: "Poppins", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.poppins-bold {
+  font-family: "Poppins", serif;
+  font-weight: 700;
+  font-style: normal;
+  
+}
+
+.poppins-light-italic {
+  font-family: "Poppins", serif;
+  font-weight: 300;
+  font-style: italic;
+}
