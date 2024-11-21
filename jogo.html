@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jogo de Investigação</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #2c3e50;
+      color: #ecf0f1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    #game-container {
+      width: 80%;
+      max-width: 600px;
+      text-align: center;
+      background: #34495e;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    }
+    #context {
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+    #choices {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+    .choice-btn {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      background: #3498db;
+      color: white;
+      cursor: pointer;
+    }
+    .choice-btn:hover {
+      background: #2980b9;
+    }
+    .nav-btn {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 20px;
+      cursor: pointer;
+    }
+    .nav-btn:hover {
+      color: #95a5a6;
+    }
+  </style>
+</head>
+<body>
+  <div id="game-container">
+    <div id="context"></div>
+    <div id="choices" style="display: none;">
+      <button class="choice-btn" id="choice1"></button>
+      <button class="choice-btn" id="choice2"></button>
+    </div>
+    <div>
+      <button class="nav-btn" id="prev-btn">&larr; Voltar</button>
+      <button class="nav-btn" id="next-btn">Avançar &rarr;</button>
+    </div>
+  </div>
+
+  <script>
+    const story = [
+      { text: "Você está em uma sala escura. Há uma porta à sua frente.", type: "context" },
+      { 
+        text: "O que você faz?", 
+        type: "question", 
+        choices: [
+          { text: "Abrir a porta", nextIndex: 3 },
+          { text: "Ficar na sala", nextIndex: 4 }
+        ] 
+      },
+      { text: "Você abriu a porta e encontrou um corredor iluminado.", type: "context" },
+      { text: "Você ficou na sala e ouve um barulho estranho.", type: "context" }
+    ];
+
+    let currentIndex = 0;
+
+    const contextDiv = document.getElementById("context");
+    const choicesDiv = document.getElementById("choices");
+    const choice1Btn = document.getElementById("choice1");
+    const choice2Btn = document.getElementById("choice2");
+    const prevBtn = document.getElementById("prev-btn");
+    const nextBtn = document.getElementById("next-btn");
+
+    function updateUI() {
+      const currentStep = story[currentIndex];
+      contextDiv.textContent = currentStep.text;
+
+      if (currentStep.type === "question") {
+        choicesDiv.style.display = "flex";
+        choice1Btn.textContent = currentStep.choices[0].text;
+        choice2Btn.textContent = currentStep.choices[1].text;
+
+        choice1Btn.onclick = () => {
+          currentIndex = currentStep.choices[0].nextIndex;
+          updateUI();
+        };
+
+        choice2Btn.onclick = () => {
+          currentIndex = currentStep.choices[1].nextIndex;
+          updateUI();
+        };
+      } else {
+        choicesDiv.style.display = "none";
+      }
+    }
+
+    nextBtn.onclick = () => {
+      if (currentIndex < story.length - 1 && story[currentIndex].type !== "question") {
+        currentIndex++;
+        updateUI();
+      }
+    };
+
+    prevBtn.onclick = () => {
+      if (currentIndex > 0) {
+        currentIndex--;
+        updateUI();
+      }
+    };
+
+    updateUI();
+  </script>
+</body>
+</html>

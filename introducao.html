@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Descubra o Assassino</title>
+    <!-- Importando a fonte 'Poppins' -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,700;1,300&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="game.css">
+    <!-- Importando o cdn do bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="card m-auto col-10" style=" border: none; background-color: transparent; padding-top: 50px;">
+        <div class="row g-0 m-auto">
+            <div class="col-md-4">
+                <img src="assets/img/mbw-noticia.png" class="img-fluid rounded-start" alt="...">
+            </div>
+            <div class="col-md-6 m-auto">
+                <div class="card-body" style="text-align: center;">
+                    <h5 class="card-title" style="color: white; font-weight: 700;">Bem vindo(a)!</h5>
+                    <p class="card-text" style="color: white; font-weight: 400;">Você foi contratado por Verônica Adagio
+                        para resolver o misterioso caso da Mansão BlackWood, do qual Brandão Adagio, seu pai, um
+                        renomado empresário e figura política da cidade de FishTown faleceu. 
+                        No decorrer do caminho, lhe serão apresentadas duas alternativas de caminhos para coletar pistas
+                        e informações.
+                        Se atente as suas escolhas</p>
+                    <br>
+                    <h5 class="card-title" style="color: rgb(255, 0, 0); font-weight: 700;">Você pode não sobreviver até
+                        o fim do
+                        caso.</h5>
+                    <br>
+
+                    <a href="depoimentos.html" class="btn btn-primary"
+                        style="background-color: #d89046; border-left: 10px solid #8b4325; border-bottom: 10px solid #8b4325; border-top: none; border-right: none; border-radius: 20px; font-size: 25px; font-weight: 900; ">Escutar
+                        os depoimentos</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <!--Importando o acrodeão com bootstrap-->
+    <div class="accordion accordion-flush col-10 m-auto" id="accordionFlushExample" style="border: white solid 1px;">
+        <!-- Item 1 -->
+        <div class="accordion-item" style="background-color: #16021c;">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" style="background-color: #16021c; color: white;" 
+                    data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                    Primeiro Depoimento
+                </button>
+            </h2>
+            <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body">
+                    <div class="card mb-3" style="background-color: transparent; color: white;">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="assets/img/luiz.png" class="img-fluid rounded-start" alt="...">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title">Luiz</h5>
+                                    <p class="card-text">This is a wider card with supporting text below as a natural
+                                        lead-in to additional content. This content is a little bit longer.</p>
+                                    <p class="card-text"><small class="text-body-secondary">Last updated 3 mins
+                                            ago</small></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Item 2 -->
+        <div class="accordion-item" style="background-color: #16021c;">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo" style="background-color: #16021c; color: white;">
+                    Segundo Depoimento
+                </button>
+            </h2>
+            <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body">
+                    <div class="card mb-3" style="background-color: transparent; color: white;">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="assets/img/sophia.png" class="img-fluid rounded-start" alt="...">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title">Card title</h5>
+                                    <p class="card-text">This is a wider card with supporting text below as a natural
+                                        lead-in to additional content. This content is a little bit longer.</p>
+                                    <p class="card-text"><small class="text-body-secondary">Last updated 3 mins
+                                            ago</small></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Item 3 -->
+        <div class="accordion-item" style="background-color: #16021c;">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree" style="background-color: #16021c; color: white;">
+                    Terceiro Depoimento
+                </button>
+            </h2>
+            <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body" >
+                    <div class="card mb-3" style="background-color: transparent; color: white;">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="assets/img/veronica.png" class="img-fluid rounded-start" alt="...">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title">Card title</h5>
+                                    <p class="card-text">This is a wider card with supporting text below as a natural
+                                        lead-in to additional content. This content is a little bit longer.</p>
+                                    <p class="card-text"><small class="text-body-secondary">Last updated 3 mins
+                                            ago</small></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Item 4 -->
+        <div class="accordion-item" style=" background-color: #16021c;">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour" style="background-color: #16021c; color: white;">
+                    Quarto Depoimento
+                </button>
+            </h2>
+            <div id="flush-collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample" >
+                <div class="accordion-body">
+                    <div class="card mb-3" style="background-color: transparent; color: white;">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="assets/img/robert.png" class="img-fluid rounded-start" alt="...">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title">Card title</h5>
+                                    <p class="card-text">This is a wider card with supporting text below as a natural
+                                        lead-in to additional content. This content is a little bit longer.</p>
+                                    <p class="card-text"><small class="text-body-secondary">Last updated 3 mins
+                                            ago</small></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+
+
+    <!-- Bootstrap Bundle com Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
