@@ -1,0 +1,86 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #1e1e2e;
+    color: #e1d3f1;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background-image: url(assets/img/background1.png);
+    background-size: cover; /* Ajusta a imagem para cobrir todo o fundo */
+    background-repeat: no-repeat; /* Evita que a imagem se repita */
+    background-attachment: fixed; /* Fixa a imagem ao fundo ao rolar a página */
+    background-position: center; /* Centraliza a imagem */
+  }
+
+
+.game-container {
+    width: 80%;
+    max-width: 500px;
+    text-align: center;
+    background-color: #2d2d4a;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+    color: #a08abf;
+}
+
+#question-text {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
+.btn-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.btn {
+    padding: 10px;
+    font-size: 1em;
+    color: #1e1e2e;
+    background-color: #e1d3f1;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: #c6a4e0;
+}
+
+#next-btn, #restart-btn {
+    padding: 10px 20px;
+    font-size: 1em;
+    color: #1e1e2e;
+    background-color: #e1d3f1;
+    border: none;
+    border-radius: 5px;
+    margin-top: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#next-btn {
+    margin-top: 15px;
+}
+
+#next-btn:hover, #restart-btn:hover {
+    background-color: #c6a4e0;
+}
+
+.hidden {
+    display: none;
+}
+
+.questoes{
+    display: flex;
+    flex-direction: column; /* Mantém o texto e botões em colunas */
+    align-items: center;    /* Centraliza horizontalmente */
+}
