@@ -1,0 +1,78 @@
+/* Estilo base para usar a fonte 'Poppins' */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+/* Estilo do corpo com imagem de fundo */
+body {
+    background-image: url('assets/img/mbw-background.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    color: #fff;
+    text-align: center;
+}
+
+/* Estilo do contêiner do ranking */
+.ranking-container {
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 30px;
+    margin: 50px auto;
+    width: 80%;
+    border-radius: 15px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Título do ranking */
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+/* Tabela de ranking */
+table {
+    margin: 20px auto;
+    width: 100%;
+    border-collapse: collapse;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #fff;
+}
+
+th, td {
+    padding: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    text-align: center;
+}
+
+th {
+    background-color: rgba(0, 0, 0, 0.8);
+    font-weight: 700;
+}
+
+td {
+    font-weight: 400;
+    font-size: 1rem;
+}
+
+/* Botão estilizado */
+button {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    border: 2px solid #fff;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
+}
