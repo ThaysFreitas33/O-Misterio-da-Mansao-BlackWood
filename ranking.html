@@ -1,31 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ranking - BlackWood</title>
+    <title>Ranking - O Mistério da Mansão BlackWood</title>
     <link rel="stylesheet" href="ranking.css">
 </head>
-<body>
-    <div class="bg-image">
-        <div class="ranking-container">
-            <h1>Ranking dos Jogadores</h1>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Posição</th>
-                        <th>Nome</th>
-                        <th>Pontuação</th>
-                    </tr>
-                </thead>
-                <tbody id="ranking-table">
-                    <!-- As linhas serão geradas pelo JavaScript -->
-                </tbody>
-            </table>
-            <button id="back-btn">Voltar ao Jogo</button>
-        </div>
+
+<body class="ranking-body">
+    <div class="ranking-container">
+        <h1 class="ranking-title">Ranking dos Detetives</h1>
+        <table id="ranking-table">
+            <thead>
+                <tr>
+                    <th>Posição</th>
+                    <th>Nome</th>
+                    <th>Tempo</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <button class="back-btn" onclick="window.location.href='index.html'">Voltar ao Início</button>
     </div>
 
-    <script src="ranking.js"></script>
+    <script>
+        const rankingTableBody = document.querySelector('#ranking-table tbody');
+        const rankings = JSON.parse(localStorage.getItem('rankings')) || [];
+
+        // Função para formatar tempo em "mm:ss"
+        function formatTime(seconds) {
+            const minutes = Math.floor(seconds / 60);
+            const remainingSeconds = seconds % 60;
+            return `${minutes}m ${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}s`;
+        }
+
+        rankings.forEach((entry, index) => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${index + 1}</td>
+                <td>${entry.name}</td>
+                <td>${formatTime(entry.time)}</td>
+            `;
+            rankingTableBody.appendChild(row);
+        });
+    </script>
 </body>
+
 </html>

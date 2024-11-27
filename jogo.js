@@ -4,7 +4,9 @@ const nextButton = document.getElementById('next-btn');
 const restartButton = document.getElementById('restart-btn');
 
 let currentQuestionIndex = 0;
-let selectedPathQuestions = []; // Variável para armazenar o caminho selecionado
+let selectedPathQuestions = [];
+let startTime;
+let timerInterval;
 
 const initialQuestions = [
     {
@@ -60,17 +62,31 @@ const pathBQuestions = [
 
 function startGame() {
     currentQuestionIndex = 0;
-    selectedPathQuestions = []; // Reseta o caminho escolhido
+    selectedPathQuestions = [];
     restartButton.classList.add('hidden');
+    startTime = new Date();
+    startTimer();
     showQuestion();
+}
+
+function startTimer() {
+    const timerDisplay = document.getElementById('timer');
+    timerInterval = setInterval(() => {
+        const elapsedTime = Math.floor((new Date() - startTime) / 1000);
+        timerDisplay.innerText = `Tempo: ${elapsedTime}s`;
+    }, 1000);
+}
+
+function stopTimer() {
+    clearInterval(timerInterval);
 }
 
 function showQuestion() {
     const currentQuestions = selectedPathQuestions.length > 0 ? selectedPathQuestions : initialQuestions;
 
     if (currentQuestionIndex >= currentQuestions.length) {
-        alert("Fim do jogo!");
-        showRestart();
+        stopTimer();
+        showEndGame();
         return;
     }
 
@@ -91,7 +107,6 @@ function selectAnswer(answer) {
     updateBackground(answer.text);
 
     if (answer.nextPath) {
-        // Define o caminho e seleciona o conjunto de perguntas correspondente
         selectedPathQuestions = answer.nextPath === "A" ? pathAQuestions : pathBQuestions;
         currentQuestionIndex = 0;
         showQuestion();
@@ -102,8 +117,8 @@ function selectAnswer(answer) {
         currentQuestionIndex = answer.nextQuestion;
         showQuestion();
     } else {
-        alert("Fim do jogo.");
-        showRestart();
+        stopTimer();
+        showEndGame();
     }
 }
 
@@ -121,6 +136,28 @@ function updateBackground(answerText) {
     document.body.style.backgroundSize = "cover";
     document.body.style.backgroundPosition = "center";
 }
+
+function showEndGame() {
+    const elapsedTime = Math.floor((new Date() - startTime) / 1000);
+    const playerName = prompt("Fim do jogo! Digite seu nome para registrar no ranking:");
+
+    if (playerName) {
+        saveRanking(playerName, elapsedTime);
+        // Redireciona o usuário para a página de ranking
+        window.location.href = "ranking.html";
+    } else {
+        alert("Nome é obrigatório para registrar no ranking!");
+        showRestart();
+    }
+}
+
+function saveRanking(playerName, elapsedTime) {
+    const rankings = JSON.parse(localStorage.getItem('rankings')) || [];
+    rankings.push({ name: playerName, time: elapsedTime });
+    rankings.sort((a, b) => a.time - b.time);
+    localStorage.setItem('rankings', JSON.stringify(rankings));
+}
+
 
 function showRestart() {
     restartButton.classList.remove('hidden');
