@@ -31,7 +31,7 @@ const pathAQuestions = [
         id: "porta",
         text: "Você investiga a porta estranha, mas cai no porão e fica preso. Não há como sair.",
         answers: [
-            { text: "Reiniciar", Restart },
+            { text: "Reiniciar", nextQuestion: Restart },
         ]
     },
     {
@@ -68,7 +68,7 @@ const pathAQuestions = [
         id: "erro-cabana",
         text: "Escolha ruim, a pessoa que você encontrou lá fora não era bem intencionada, antes que você percebesse, seus olhos e sua boca foram tapados. Ela sabia perfeitamente o que era o local onde você estava, e que você definitivamente não deveria estar lá. Tudo fica escuro, você não sabe para onde está sendo levado. ",
         answers: [
-            { text: "Reiniciar", Restart },
+            { text: "Reiniciar", nextQuestion: Restart },
             { text: "Ir para o labirinto", nextQuestion: 8 }
         ]
     },
@@ -76,8 +76,8 @@ const pathAQuestions = [
         id: "labirinto-cabana",
         text: "Em uma das gavetas, você encontra um desenho antigo, parece ter sido feito por uma criança, neles estão três pessoas, com os nomes em cima “Pai” “Mãe” “Eu”  e “amor”  com corações. As coisas que se encontram nesse local parecem verdadeiramente íntimas.",
         answers: [
-            { text: "Não saiu", Restart },
-            { text: "Saiu", nextQuestion: 6 }
+            { text: "Não sair", nextQuestion: Restart },
+            { text: "Sair", nextQuestion: 6 }
         ]
     },
     {
@@ -113,32 +113,29 @@ const pathAQuestions = [
         id: "salas",
         text: "Em cima da mesa, era possível ver vários papeis remexidos, você decide olhar melhor, percebendo que são comparativos de vendas feitas por Brandão e por Robert, como se instigasse uma espécie de competição. Isso significa que… eles não trabalham exatamente juntos? Mas trabalham buscando superar um ao outro? Você reuniu o máximo de pistas possível, vá para o final.",
         answers: [
-            { text: "Ir para a conclusão", nextQuestion: "final" }
+            { text: "Ir para a conclusão", nextQuestion: 14  }
         ]
     },
     {
         id: "final",
         text: "Parabéns por chegar até aqui! Agora quem você acha que é o assassino?",
         answers: [
-            { text: "Sophia", nextQuestion: "erro" },
-            { text: "Luiz", nextQuestion: "erro" },
-            { text: "Verônica", nextQuestion: "acerto" },
-            { text: "Robert", nextQuestion: "erro" }
+            { text: "Certo", Restart },
+            { text: "Errado", Restart },
         ]
     },
     {
         id: "erro",
-        text: "Você errou! Deseja reiniciar o jogo e tentar descobrir ou saber agora quem era o assassino? ",
+        text: "Você errou! Reinicie o jogo e tentar descobrir ou saber agora quem era o assassino! ",
         answers: [
-            { text: "Reiniciar", Restart },
-            { text: "Saber resolução", nextQuestion: "resolução" }
+            { text: "Reiniciar", nextQuestion: Restart },
         ]
     },
     {
         id: "acerto",
         text: "Parabéns! Você descobriu que Verônica é a assassina. Ela envenenou Brandão por vingança!",
         answers: [
-            { text: "Início", Restart }
+            { text: "Início", nextQuestion: Restart }
         ]
     },
     {
@@ -146,14 +143,14 @@ const pathAQuestions = [
         text: "A verdadeira assassina é a Veronica. A primeira pista que o jogo nos deixa, é Verônica em seu interrogatório revelar que sabia do bilhete, e nenhuma das outros suspeitos sequer o mencionou. Como Veronica poderia saber do bilhete se somente o cozinheiro e você sabiam da existência dele? ",
         answers: [
             { text: "Saber mais", nextQuestion: "infos" },
-            { text: "Início", Restart }
+            { text: "Início", nextQuestion: Restart }
         ]
     },
     {
         id: "infos",
         text: "Brandão era um homem de muito poder político em FishTown, a sociedade sempre colocou muita pressão nele e em Robert para ver quem seria melhor do que o outro em ajuda a causas sociais. Para ambos, manter seus status social limpo sempre foi uma grande prioridadeBrandão teve uma primeira esposa chamada Amélia, Veronica tinha nascido muito antes de eles formalizarem um casamento. Meses depois Amélia descobriu a infidelidade do marido com Sophia, ameaçando expor para a imprensa o tipo de homem que ele era. A fim de evitar isso, Sophia e Brandão se uniram para levar Amélia a óbito de forma minuciosa, através de envenenamento. Um tempo depois, Sophia e Brandão se casaram, mas Veronica, agora crescida, próximo do aniversário de seu pai, descobriu sobre a infidelidade e também do homicídio planejado de sua mãe, e de que mesmo após Brandão ter se casado de novo, ele continuou sendo infiel. Em forma de vingança, “envenenou” seu pai assim como ele fez com sua primeira esposa, só que dessa vez, com uma alergia extremamente perigosa. Para cobrir seus rastros, escreveu um bilhete anônimo e deixou com o cozinheiro novo, Luiz, sabendo que dificilmente ele não aceitaria uma suposta ordem. A intenção em si de Veronica era fazer seu pai passar muito mal, mas não necessariamente matá-lo, então seu desespero no interrogatório é genuíno. ",
         answers: [
-            { text: "Início", Restart }
+            { text: "Início", nextQuestion: Restart }
         ]
     },
     {
@@ -173,15 +170,15 @@ const pathBQuestions = [
         id: "inicio",
         text: "Chegando na empresa, você percebe que o local parece se concentrar muito em evidenciar os rostos de Brandão e Robert, ao lado mostrando algumas de suas ações relevantes para FishTown. Não é difícil reparar que os murmúrios dos funcionários são sobre seus lamentos pela morte de Brandão, e certas “comemorações” por Robert ter passado em sua frente. Que tipo de relação eles costumam ter de fato além do pessoal e profissional? ",
         answers: [
-            { text: "Investigar a sala de Robert", nextQuestion: "sala-robert" },
+            { text: "Investigar a sala de Robert", nextQuestion: 1 },
         ]
     },
     {
         id: "sala-robert",
         text: "Você entra na sala de Robert e encontra seu computador aberto. Ele está em um site de notícias, com manchetes destacando sua ascensão social após a morte de Brandão. Você repara que há alguns contratos assinados ao lado, uma letra rúbrica e ágil em sua escrita, bem diferente da fonte de texto que você encontrou no bilhete, o que talvez diminua as chances de ele ter sido escrito por Robert.. Passos fora da sala são ouvidos. O que fazer?",
         answers: [
-            { text: "Ficar e continuar procurando", nextQuestion: "erro-robert" },
-            { text: "Sair da sala rapidamente", nextQuestion: "sair-robert" }
+            { text: "Ficar e continuar procurando", nextQuestion: 2 },
+            { text: "Sair da sala rapidamente", nextQuestion: 3 }
         ]
     },
     
@@ -196,22 +193,22 @@ const pathBQuestions = [
         id: "sair-robert",
         text: "Você sai da sala de Robert sem ser notado e decide voltar para a Mansão BlackWood.",
         answers: [
-            { text: "Continuar investigando na mansão", nextQuestion: "mansao" }
+            { text: "Continuar investigando na mansão", nextQuestion: 4 }
         ]
     },
     {
         id: "mansao",
         text: "Já na Mansão BlackWood, um celular de repente começa a tocar muitas notificações, você se aproxima e percebe que são respostas a mensagens de reclamações, aparentemente a respeito do salário. O único que trabalha nesta casa é Luiz, então há grandes chances de esse celular pertencer a ele Mas por quais motivos ele estaria reclamando do salário? Brandão sempre foi uma pessoa muito bem sucedida. Luiz de fato mencionou na entrevista que jamais faria algo do gênero por dinheiro… mas será que ele é confiável. ",
         answers: [
-            { text: "Explorar o andar superior", nextQuestion: "andar-superior" }
+            { text: "Explorar o andar superior", nextQuestion: 5 }
         ]
     },
     {
         id: "andar-superior",
         text: "No andar superior, você visualiza um comôdo com a porta entreaberta.  Ao adentrar, você nota ser o quarto de Veronica, com muitas coisas chamando a atenção. Uma delas é um cofre, que está brilhando perto de uma cômoda, se Veronica tiver uma informação interessante para o caso, talvez esteja lá. ",
         answers: [
-            { text: "Tentar abrir o cofre", nextQuestion: "cofre" },
-            { text: "Procurar em lugares mais seguros", nextQuestion: "pistas-seguras" }
+            { text: "Tentar abrir o cofre", nextQuestion: 6 },
+            { text: "Procurar em lugares mais seguros", nextQuestion: 7 }
         ]
     },
     {
@@ -219,7 +216,7 @@ const pathBQuestions = [
         text: "Você tenta abrir o cofre, mas não tem informações suficientes. Um alarme dispara e Verônica aparece. Ela te acusa de tentativa de roubo, e você é afastado do caso.",
         answers: [
             { text: "Reiniciar", Restart },
-            { text: "Ir para o labirinto", nextQuestion: "labirinto-cofre" }
+            { text: "Ir para o labirinto", nextQuestion: 8 }
         ]
     },
     {
@@ -227,22 +224,22 @@ const pathBQuestions = [
         text: "Você tenta abrir o cofre, mas não tem informações suficientes. Um alarme dispara e Verônica aparece. Ela te acusa de tentativa de roubo, e você é afastado do caso.",
         answers: [
             { text: "Não saiu", Restart },
-            { text: "Saiu", nextQuestion: "pistas-seguras" }
+            { text: "Saiu", nextQuestion: 9 }
         ]
     },
     {
         id: "pistas-seguras",
         text: "Você foi cauteloso, não há como adivinhar a senha do cofre sabendo tão pouco sobre Veronica, com isso acaba encontrando um fundo falso no armário, com arquivos médicos detalhando a alergia de Brandão a camarão. Isso levanta questões: por que Verônica guardaria isso?",
         answers: [
-            { text: "Investigar mais no quarto", nextQuestion: "quarto-veronica" }
+            { text: "Investigar mais no quarto", nextQuestion: 10 }
         ]
     },
     {
         id: "quarto-veronica",
         text: "Você olha mais atentamente o resto do quarto, embaixo da cama encontra um diário e uma caixa onde dentro dela há uma chave e várias fotos de um casal após um casamento. O homem ligeiramente mais jovem parece ser Brandão, ao lado de uma mulher que não é Sophia. Seria essa a primeira esposa dele? A verdade é que olhando de longe, Veronica não parecia ser filha de Sophia de fato. E aquela chave? Para que servia? ",
         answers: [
-            { text: "Tentar abrir o diário ali mesmo", nextQuestion: "erro-diario" },
-            { text: "Ir para um local seguro para abrir", nextQuestion: "diario" }
+            { text: "Tentar abrir o diário ali mesmo", nextQuestion: 11 },
+            { text: "Ir para um local seguro para abrir", nextQuestion: 12 }
         ]
     },
     {
@@ -250,7 +247,7 @@ const pathBQuestions = [
         text: "Você tenta abrir o diário ali mesmo. Sophia aparece e, chocada, te acusa de invadir a privacidade de Verônica. Você é afastado do caso.",
         answers: [
             { text: "Reiniciar", Restart },
-            { text: "Ir para o labirinto", nextQuestion: "labirinto-diario" }
+            { text: "Ir para o labirinto", nextQuestion: 13 }
         ]
     },
     {
@@ -258,23 +255,21 @@ const pathBQuestions = [
         text: "Você tenta abrir o diário ali mesmo. Sophia aparece e, chocada, te acusa de invadir a privacidade de Verônica. Você é afastado do caso.",
         answers: [
             { text: "Não saiu", Restart },
-            { text: "Saiu", nextQuestion: "diario" }
+            { text: "Saiu", nextQuestion: 14 }
         ]
     },
     {
         id: "diario",
         text: "Você abre o diário em um local seguro. Nele, Verônica descreve seu ódio pelo pai e pela madrasta, mencionando que Brandão causou a morte de sua mãe e que Sophia é cúmplice.",
         answers: [
-            { text: "Decidir quem é o culpado", nextQuestion: "final" }
+            { text: "Decidir quem é o culpado", nextQuestion: 15 }
         ]
     },
     {   id: "final",
         text: "Parabéns por chegar até aqui! Agora quem você acha que é o assassino?",
         answers: [
-            { text: "Sophia", nextQuestion: "erro" },
-            { text: "Luiz", nextQuestion: "erro" },
-            { text: "Verônica", nextQuestion: "acerto" },
-            { text: "Robert", nextQuestion: "erro" }
+            { text: "Certo", Restart },
+            { text: "Errado", Restart },
         ]
     },
     {
@@ -282,7 +277,7 @@ const pathBQuestions = [
         text: "Você errou! Deseja reiniciar o jogo e tentar descobrir ou saber agora quem era o assassino? ",
         answers: [
             { text: "Reiniciar", Restart },
-            { text: "Saber resolução", nextQuestion: "resolução" }
+            { text: "Saber resolução", nextQuestion: 16 }
         ]
     },
     {
@@ -296,7 +291,7 @@ const pathBQuestions = [
         id: "resolução",
         text: "A verdadeira assassina é a Veronica. A primeira pista que o jogo nos deixa, é Verônica em seu interrogatório revelar que sabia do bilhete, e nenhuma das outros suspeitos sequer o mencionou. Como Veronica poderia saber do bilhete se somente o cozinheiro e você sabiam da existência dele? ",
         answers: [
-            { text: "Saber mais", nextQuestion: "infos" },
+            { text: "Saber mais", nextQuestion: 17 },
             { text: "Início", Restart }
         ]
     },
