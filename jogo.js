@@ -1,9 +1,12 @@
 const questionText = document.getElementById('question-text');
 const answerButtons = document.getElementById('answer-buttons');
+const nextButton = document.getElementById('next-btn');
 const restartButton = document.getElementById('restart-btn');
 
 let currentQuestionIndex = 0;
-let selectedPathQuestions = []; // Caminho atualmente selecionado
+let selectedPathQuestions = [];
+let startTime;
+let timerInterval;
 
 const initialQuestions = [
     {
@@ -20,8 +23,8 @@ const pathAQuestions = [
         id: "inicio",
         text: "Você decide investigar a Residência BlackWood. Ao chegar, você encontra um caderno com a anotação 'Nada de camarão'. Luiz, o cozinheiro, disse não saber da alergia de Brandão. Isso não faz sentido. O que fazer agora?",
         answers: [
-            { text: "Investigar a porta estranha no corredor", nextQuestion: "porta" },
-            { text: "Continuar explorando a casa", nextQuestion: "casa" }
+            { text: "Investigar a porta estranha no corredor", nextQuestion: 1 },
+            { text: "Continuar explorando a casa", nextQuestion: 2 }
         ]
     },
     {
@@ -35,30 +38,30 @@ const pathAQuestions = [
         id: "casa",
         text: "Você continua explorando a casa e encontra o quarto de Brandão e Sophia. Lá, encontra um brinco dourado. Quem poderia ser o dono desse brinco?",
         answers: [
-            { text: "Investigar mais a fundo", nextQuestion: "brinco" },
-            { text: "Sair do quarto", nextQuestion: "foto" }
+            { text: "Investigar mais a fundo", nextQuestion: 3 },
+            { text: "Sair do quarto", nextQuestion: 4 }
         ]
     },
     {
         id: "brinco",
         text: "O brinco encontrado não é de Sophia, que usa somente prata, indicando a presença de outra mulher. Você decide investigar mais fora do quarto.",
         answers: [
-            { text: "Próximo", nextQuestion: "foto" },
+            { text: "Próximo", nextQuestion: 4 },
         ]
     },
     {
         id: "foto",
         text: "Ao sair no corredor, você encontra uma foto rasgada de Brandão e Verônica. Há sinais de um relacionamento complicado entre pai e filha. Com essas descobertas você decide ir para a delegacia.",
         answers: [
-            { text: "Ir para a delegacia", nextQuestion: "delegacia" }
+            { text: "Ir para a delegacia", nextQuestion: 5 }
         ]
     },
     {
         id: "delegacia",
         text: "No caminho para a delegacia, você encontra uma cabana. Lá, encontra um porta-retrato e taças com marcas de batom roxo, você vê que atrás da foto há a data “Março, 2020”. Ao lado há uma notinha de compra com informações desbotadas, mas ainda dando para ver a data de compra e o produto, “14 de novembro de 2020” foram compradas duas garrafas de vinho. Você esuta barulhos semelhantes a passos do lado de fora da cabana. O que fazer?",
         answers: [
-            { text: "Investigar mais", nextQuestion: "cabana" },
-            { text: "Averiguar do lado de fora", nextQuestion: "erro-cabana" }
+            { text: "Investigar mais", nextQuestion: 6 },
+            { text: "Averiguar do lado de fora", nextQuestion: 7 }
         ]
     },
     {
@@ -66,7 +69,7 @@ const pathAQuestions = [
         text: "Escolha ruim, a pessoa que você encontrou lá fora não era bem intencionada, antes que você percebesse, seus olhos e sua boca foram tapados. Ela sabia perfeitamente o que era o local onde você estava, e que você definitivamente não deveria estar lá. Tudo fica escuro, você não sabe para onde está sendo levado. ",
         answers: [
             { text: "Reiniciar", nextQuestion: "reiniciar" },
-            { text: "Ir para o labirinto", nextQuestion: "labirinto-cabana" }
+            { text: "Ir para o labirinto", nextQuestion: 8 }
         ]
     },
     {
@@ -74,36 +77,36 @@ const pathAQuestions = [
         text: "Em uma das gavetas, você encontra um desenho antigo, parece ter sido feito por uma criança, neles estão três pessoas, com os nomes em cima “Pai” “Mãe” “Eu”  e “amor”  com corações. As coisas que se encontram nesse local parecem verdadeiramente íntimas.",
         answers: [
             { text: "Não saiu", nextQuestion: "reiniciar" },
-            { text: "Saiu", nextQuestion: "cabana" }
+            { text: "Saiu", nextQuestion: 6 }
         ]
     },
     {
         id: "cabana",
         text: "Em uma das gavetas, você encontra um desenho antigo, parece ter sido feito por uma criança, neles estão três pessoas, com os nomes em cima “Pai” “Mãe” “Eu”  e “amor”  com corações. As coisas que se encontram nesse local parecem verdadeiramente íntimas.",
         answers: [
-            { text: "Ir para a delegacia e investigar mais", nextQuestion: "delegacia-2" }
+            { text: "Ir para a delegacia e investigar mais", nextQuestion: 9 }
         ]
     },
     {
         id: "delegacia-2",
         text: "Através de registros, você descobre que a primeira esposa de Brandão se chama Amélia, morreu há dois anos atrás, em 2022, através de envenenamento e poucos meses depois, Brandão se casou outra vez, dessa vez com Sophia. Minimamente estranho para quem supostamente deveria estar de luto pela esposa.",
         answers: [
-            { text: "Próximo", nextQuestion: "delegacia-3" }
+            { text: "Próximo", nextQuestion: 10 }
         ]
     },
     {
         id: "delegacia-3",
         text: "O seu expediente está finalizando, mas você lembra que ainda pode haver informações cruciais na empresa da qual Brandão trabalhava, então decide passar por lá.",
         answers: [
-            { text: "Ir para a empresa de Brandão", nextQuestion: "empresa" }
+            { text: "Ir para a empresa de Brandão", nextQuestion: 11}
         ]
     },
     {
         id: "empresa",
         text: "Você encontra a sala de Brandão, uma das principais, que por algum motivo, estava aberta, a sala parecia de certa forma ter sido revirada. Além da desorganização, encontrava-se uma parte da quina da mesa de vidro quebrada, como se alguém tivesse batido ali. Não parecia ser por acidente… parecia efeito de uma briga. Próximo ao chão, era possível ver algo brilhando, se tratava de um anel, especificamente de uma aliança, patenteada de um nome feminino e ao lado, o nome “Robert” ",
         answers: [
-            { text: "Continuar investigando", nextQuestion: "salas" },
-            { text: "Sair da sala", nextQuestion: "final" }
+            { text: "Continuar investigando", nextQuestion: 12 },
+            { text: "Sair da sala", nextQuestion: 13 }
         ]
     },
     {
@@ -317,40 +320,13 @@ const pathBQuestions = [
     
 ];
 
-// Função para iniciar o jogo
 function startGame() {
     currentQuestionIndex = 0;
-    selectedPathQuestions = initialQuestions;
-    restartButton.classList.add('hide');
+    selectedPathQuestions = [];
+    restartButton.classList.add('hidden');
+    startTime = new Date();
+    startTimer();
     showQuestion();
-}
-
-// Função para exibir a pergunta atual
-function showQuestion() {
-    clearButtons();
-    const currentQuestion = selectedPathQuestions[currentQuestionIndex];
-
-    if (!currentQuestion) {
-        questionText.innerText = "Erro: pergunta não encontrada.";
-        return;
-    }
-
-    questionText.innerText = currentQuestion.text;
-
-    currentQuestion.answers.forEach(answer => {
-        const button = document.createElement('button');
-        button.innerText = answer.text;
-        button.classList.add('btn');
-        button.addEventListener('click', () => selectAnswer(answer));
-        answerButtons.appendChild(button);
-    });
-}
-
-// Função para limpar botões antigos
-function clearButtons() {
-    while (answerButtons.firstChild) {
-        answerButtons.removeChild(answerButtons.firstChild);
-    }
 }
 
 // Função para tratar a resposta selecionada
@@ -368,16 +344,112 @@ function selectAnswer(answer) {
             return;
         }
     }
+}
 
-    if (answer.nextQuestion === "reiniciar") {
+function restartGame(answer){
+    if (nextQuestion === "reiniciar") {
         startGame();
     } else {
+        currentQuestionIndex = nextQuestion;
         showQuestion();
     }
 }
 
-// Função para reiniciar o jogo
+function startTimer() {
+    const timerDisplay = document.getElementById('timer');
+    timerInterval = setInterval(() => {
+        const elapsedTime = Math.floor((new Date() - startTime) / 1000);
+        timerDisplay.innerText = `Tempo: ${elapsedTime}s`;
+    }, 1000);
+}
+
+function stopTimer() {
+    clearInterval(timerInterval);
+}
+
+function showQuestion() {
+    const currentQuestions = selectedPathQuestions.length > 0 ? selectedPathQuestions : initialQuestions;
+
+    if (currentQuestionIndex >= currentQuestions.length) {
+        stopTimer();
+        showEndGame();
+        return;
+    }
+
+    const currentQuestion = currentQuestions[currentQuestionIndex];
+    questionText.innerText = currentQuestion.text;
+    answerButtons.innerHTML = '';
+
+    currentQuestion.answers.forEach(answer => {
+        const button = document.createElement('button');
+        button.innerText = answer.text;
+        button.classList.add('btn');
+        button.addEventListener('click', () => selectAnswer(answer));
+        answerButtons.appendChild(button);
+    });
+}
+
+function selectAnswer(answer) {
+    updateBackground(answer.text);
+
+    if (answer.nextPath) {
+        selectedPathQuestions = answer.nextPath === "A" ? pathAQuestions : pathBQuestions;
+        currentQuestionIndex = 0;
+        showQuestion();
+        return;
+    }
+
+    if (answer.nextQuestion !== undefined) {
+        currentQuestionIndex = answer.nextQuestion;
+        showQuestion();
+    } else {
+        stopTimer();
+        showEndGame();
+    }
+}
+
+function updateBackground(answerText) {
+    const backgrounds = {
+        "Residência BlackWood": "url('assets/img/background-mansao.png')",
+        "Pela Empresa": "url('assets/img/background-empresa.png')",
+        "Cozinha": "url('assets/img/background-cozinha.png')",
+        "Sala de estar": "url('assets/img/background-sala-estar.png')",
+        "Sala do chefe": "url('assets/img/background-sala-chefe.png')",
+        "Arquivos": "url('assets/img/background-arquivos.png')"
+    };
+
+    document.body.style.backgroundImage = backgrounds[answerText] || "none";
+    document.body.style.backgroundSize = "cover";
+    document.body.style.backgroundPosition = "center";
+}
+
+function showEndGame() {
+    const elapsedTime = Math.floor((new Date() - startTime) / 1000);
+    const playerName = prompt("Fim do jogo! Digite seu nome para registrar no ranking:");
+
+    if (playerName) {
+        saveRanking(playerName, elapsedTime);
+        // Redireciona o usuário para a página de ranking
+        window.location.href = "ranking.html";
+    } else {
+        alert("Nome é obrigatório para registrar no ranking!");
+        showRestart();
+    }
+}
+
+function saveRanking(playerName, elapsedTime) {
+    const rankings = JSON.parse(localStorage.getItem('rankings')) || [];
+    rankings.push({ name: playerName, time: elapsedTime });
+    rankings.sort((a, b) => a.time - b.time);
+    localStorage.setItem('rankings', JSON.stringify(rankings));
+}
+
+
+function showRestart() {
+    restartButton.classList.remove('hidden');
+}
+
 restartButton.addEventListener('click', startGame);
 
-// Inicializa o jogo
+// Inicia o jogo
 startGame();

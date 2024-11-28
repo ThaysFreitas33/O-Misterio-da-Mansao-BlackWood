@@ -23,7 +23,7 @@
     
 /* Estilo para a Tela de Ranking */
 .ranking-body {
-    background-image: url('assets/img/ranking-background.jpg');
+    background-image: url('assets/img/mbw-background.png');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
