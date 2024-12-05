@@ -31,7 +31,7 @@ const pathAQuestions = [
         id: "porta",
         text: "Você investiga a porta estranha, mas cai no porão e fica preso. Não há como sair.",
         answers: [
-            { text: "Reiniciar", nextQuestion: Restart },
+            { text: "Reiniciar", Restart },
         ]
     },
     {
@@ -68,7 +68,7 @@ const pathAQuestions = [
         id: "erro-cabana",
         text: "Escolha ruim, a pessoa que você encontrou lá fora não era bem intencionada, antes que você percebesse, seus olhos e sua boca foram tapados. Ela sabia perfeitamente o que era o local onde você estava, e que você definitivamente não deveria estar lá. Tudo fica escuro, você não sabe para onde está sendo levado. ",
         answers: [
-            { text: "Reiniciar", nextQuestion: Restart },
+            { text: "Reiniciar", Restart },
             { text: "Ir para o labirinto", nextQuestion: 8 }
         ]
     },
@@ -76,7 +76,7 @@ const pathAQuestions = [
         id: "labirinto-cabana",
         text: "Em uma das gavetas, você encontra um desenho antigo, parece ter sido feito por uma criança, neles estão três pessoas, com os nomes em cima “Pai” “Mãe” “Eu”  e “amor”  com corações. As coisas que se encontram nesse local parecem verdadeiramente íntimas.",
         answers: [
-            { text: "Não sair", nextQuestion: Restart },
+            { text: "Não sair", Restart },
             { text: "Sair", nextQuestion: 6 }
         ]
     },
@@ -128,14 +128,14 @@ const pathAQuestions = [
         id: "erro",
         text: "Você errou! Reinicie o jogo e tentar descobrir ou saber agora quem era o assassino! ",
         answers: [
-            { text: "Reiniciar", nextQuestion: Restart },
+            { text: "Reiniciar", Restart },
         ]
     },
     {
         id: "acerto",
         text: "Parabéns! Você descobriu que Verônica é a assassina. Ela envenenou Brandão por vingança!",
         answers: [
-            { text: "Início", nextQuestion: Restart }
+            { text: "Início", Restart }
         ]
     },
     {
@@ -143,14 +143,14 @@ const pathAQuestions = [
         text: "A verdadeira assassina é a Veronica. A primeira pista que o jogo nos deixa, é Verônica em seu interrogatório revelar que sabia do bilhete, e nenhuma das outros suspeitos sequer o mencionou. Como Veronica poderia saber do bilhete se somente o cozinheiro e você sabiam da existência dele? ",
         answers: [
             { text: "Saber mais", nextQuestion: "infos" },
-            { text: "Início", nextQuestion: Restart }
+            { text: "Início", Restart }
         ]
     },
     {
         id: "infos",
         text: "Brandão era um homem de muito poder político em FishTown, a sociedade sempre colocou muita pressão nele e em Robert para ver quem seria melhor do que o outro em ajuda a causas sociais. Para ambos, manter seus status social limpo sempre foi uma grande prioridadeBrandão teve uma primeira esposa chamada Amélia, Veronica tinha nascido muito antes de eles formalizarem um casamento. Meses depois Amélia descobriu a infidelidade do marido com Sophia, ameaçando expor para a imprensa o tipo de homem que ele era. A fim de evitar isso, Sophia e Brandão se uniram para levar Amélia a óbito de forma minuciosa, através de envenenamento. Um tempo depois, Sophia e Brandão se casaram, mas Veronica, agora crescida, próximo do aniversário de seu pai, descobriu sobre a infidelidade e também do homicídio planejado de sua mãe, e de que mesmo após Brandão ter se casado de novo, ele continuou sendo infiel. Em forma de vingança, “envenenou” seu pai assim como ele fez com sua primeira esposa, só que dessa vez, com uma alergia extremamente perigosa. Para cobrir seus rastros, escreveu um bilhete anônimo e deixou com o cozinheiro novo, Luiz, sabendo que dificilmente ele não aceitaria uma suposta ordem. A intenção em si de Veronica era fazer seu pai passar muito mal, mas não necessariamente matá-lo, então seu desespero no interrogatório é genuíno. ",
         answers: [
-            { text: "Início", nextQuestion: Restart }
+            { text: "Início", Restart }
         ]
     },
     {
